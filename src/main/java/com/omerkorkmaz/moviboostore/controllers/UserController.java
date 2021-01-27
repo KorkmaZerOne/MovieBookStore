@@ -14,6 +14,8 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 
+    private static final String viewPrefix = "users/";
+
     @Autowired
     private UserService userService;
 

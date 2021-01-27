@@ -1,4 +1,4 @@
-package com.omerkorkmaz.moviboostore.validator;
+package com.omerkorkmaz.moviboostore.validators;
 
 import com.omerkorkmaz.moviboostore.model.Product;
 import com.omerkorkmaz.moviboostore.model.ProductForm;

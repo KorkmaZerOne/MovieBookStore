@@ -42,13 +42,13 @@
 		                                                <a href="#" th:href="@{/products/{sku}(sku=${item.product.sku})}">
 		                                                	<img width="145" height="145" alt="poster_1_up" 
 		                                                	class="shop_thumbnail" src="assets/img/products/2.jpg"
-		                                                	th:src="@{'/products/images/{id}.jpg'(id=${item.product.id})}"/>
+		                                                	th:src="@{'/products/images/{id}.jpg'(id=${item.product.productId})}"/>
 		                                                </a>
 		                                            </td>
 		
 		                                            <td class="product-name">
 		                                                <a href="#" th:href="@{/products/{sku}(sku=${item.product.sku})}"
-		                                                	th:text="${item.product.name}">Product name</a> 
+		                                                	th:text="${item.product.title}">Product name</a>
 		                                            </td>
 		
 		                                            <td class="product-price">

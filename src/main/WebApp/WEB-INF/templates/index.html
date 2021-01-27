@@ -64,7 +64,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="logo">
-                    <h1><a href="#"><img src="assets/img/quilcart.png" th:src="@{assets/img/quilcart.png}" /></a></h1>
+                    <h1><a href="#"><img src="assets/img/moviboologo.png" th:src="@{assets/img/moviboologo.png}" /></a></h1>
                 </div>
             </div>
 
@@ -91,12 +91,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#" th:href="@{/}">Home</a></li>
+                    <li class="active"><a href="#" th:href="@{/index}">Home</a></li>
                     <!--  <li><a th:href="@{/}">New Arrivals</a></li>
                      <li><a th:href="@{/}">Best Sellers</a></li> -->
 
                 </ul>
-                <form class="navbar-form navbar-right" action="#" th:action="@{/src/main/WebApp/templates/productssearchresult}">
+                <form class="navbar-form navbar-right" action="#" th:action="@{/search}">
                     <input type="text" name="q" placeholder="Search products..."/>
                     <input type="submit" value="Search"/>
                 </form>
@@ -111,6 +111,7 @@
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
                     <h2>Movie & Book</h2>
+                    <h1>The Easy Way To Watch And Read!</h1>
                 </div>
             </div>
         </div>
@@ -119,13 +120,13 @@
 <div>
     <div class="row">
 
-        <div class="col-lg-4 col-md-6 mb-4" th:each="product : ${products}">
+        <div class="col-lg-4 col-md-6 mb-4" th:each="product : ${product}">
             <br>
             <div class="card h-100">
                 <img class="card-img-top" th:src="*{product.imageURL}" th:alt="*{product.description}">
                 <div class="card-body">
                     <h4 class="card-title">
-                        <a th:href="@{/product/{sku}(sku=*{product.sku})}" th:text="*{product.title}"></a>
+                        <a th:href="@{/product(sku=*{product.sku})}" th:text="*{product.title}"></a>
                     </h4>
                     <h5 th:text="*{product.price}"></h5>
                     <p class="card-text" th:text="*{product.description}"></p>

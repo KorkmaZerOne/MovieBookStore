@@ -43,7 +43,7 @@ public class User {
     @Column(name = "Password_Token", nullable = true)
     private String passwordResetToken;
 
-//    @ManyToMany(cascade=CascadeType.MERGE)
-//    private List<Role> roles;
+    @ManyToMany(cascade=CascadeType.MERGE)
+    private List<Role> roles;
 
 }

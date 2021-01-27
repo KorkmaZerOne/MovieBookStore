@@ -10,6 +10,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     Product findBySku(String sku);
 
-    @Query(value = "select p from Product p where p.title like ?1 or p.sku like ?1")
+    @Query(value = "select p from Product p where p.title like ?1")
     List<Product> search(String query);
 }

@@ -4,7 +4,7 @@ import com.omerkorkmaz.moviboostore.model.Category;
 import com.omerkorkmaz.moviboostore.model.Product;
 import com.omerkorkmaz.moviboostore.model.ProductForm;
 import com.omerkorkmaz.moviboostore.services.ProductService;
-import com.omerkorkmaz.moviboostore.validator.ProductFormValidator;
+import com.omerkorkmaz.moviboostore.validators.ProductFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,12 +20,11 @@ import java.util.List;
 @Controller
 public class AdminProductController {
 
-    private static final String viewPrefix = "products/";
+//    private static final String viewPrefix = "products/";
 
     @Autowired
     private ProductService productService;
 
-    @Autowired
     private ProductFormValidator productFormValidator;
 
 
@@ -38,7 +37,7 @@ public class AdminProductController {
     @RequestMapping(value="/products", method= RequestMethod.GET)
     public String listProducts(Model model) {
         model.addAttribute("products",productService.getAllProducts());
-        return viewPrefix+"products";
+        return "products/products";
     }
 
     @RequestMapping(value="/products/new", method=RequestMethod.GET)
@@ -46,21 +45,21 @@ public class AdminProductController {
         ProductForm product = new ProductForm();
         model.addAttribute("product",product);
         model.addAttribute("categoriesList",productService.getAllCategories());
-        return viewPrefix+"create_product";
+        return "products/create_product";
     }
 
     @RequestMapping(value="/products", method=RequestMethod.POST)
     public String createProduct(@Valid @ModelAttribute("product") ProductForm productForm, BindingResult result,
                                 Model model, RedirectAttributes redirectAttributes) {
-        productFormValidator.validate(productForm, result);
+       // productFormValidator.validate(productForm, result);
         if(result.hasErrors()){
-            return viewPrefix+"create_product";
+            return "products/create_product";
         }
         Product product = productForm.toProduct();
         Product persistedProduct = productService.createProduct(product);
         productForm.setId(product.getProductId());
         redirectAttributes.addFlashAttribute("info", "Product created successfully");
-        return "redirect:/products";
+        return "products/products";
     }
 
     @RequestMapping(value="/products/{id}", method=RequestMethod.GET)
@@ -68,6 +67,6 @@ public class AdminProductController {
         Product product = productService.getProductById(id);
         model.addAttribute("product",ProductForm.fromProduct(product));
         model.addAttribute("categoriesList",productService.getAllCategories());
-        return viewPrefix+"edit_product";
+        return "products/edit_product";
     }
 }

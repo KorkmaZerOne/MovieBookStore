@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <!--title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Admin</title-->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" th:href="@{/src/main/resources/static/assets/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"
+          th:href="@{assets/bootstrap/css/bootstrap.min.css}"/>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
-    						th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css}"/>
+    	  th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css}"/>
+
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
-    						th:href="@{https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css}"/>
-    <link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css" th:href="@{/src/main/resources/static/assets/dist/css/AdminLTE.min.css}"/>
+          th:href="@{https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css}"/>
+
+    <link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css"
+          th:href="@{assets/dist/css/AdminLTE.min.css}"/>
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
-    <link rel="stylesheet" href="assets/dist/css/skins/skin-blue.min.css" th:href="@{/src/main/resources/static/assets/dist/css/skins/skin-blue.min.css}"/>
+    <link rel="stylesheet" href="assets/dist/css/skins/skin-blue.min.css"
+          th:href="@{assets/dist/css/skins/skin-blue.min.css}"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -55,14 +62,14 @@
                 <!-- Menu Toggle Button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <!-- The user image in the navbar-->
-                  <img th:src="@{/src/main/resources/static/assets/dist/img/user.png}" class="user-image" alt="User Image"/>
+                  <img th:src="@{assets/dist/img/user.png}" class="user-image" alt="User Image"/>
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
                   <span class="hidden-xs" sec:authentication="principal.user.name">User</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
                   <li class="user-header">
-                    <img th:src="@{/src/main/resources/static/assets/dist/img/user.png}" class="img-circle" alt="User Image"/>
+                    <img th:src="@{assets/dist/img/user.png}" class="img-circle" alt="User Image"/>
                     <p>
                       <span sec:authentication="principal.user.name">User</span>
                     </p>
@@ -93,7 +100,7 @@
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img th:src="@{/src/main/resources/static/assets/dist/img/user.png}" class="img-circle" alt="User Image"/>
+              <img th:src="@{assets/dist/img/user.png}" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
               <p><span sec:authentication="principal.user.name">User</span></p>
@@ -107,8 +114,8 @@
             <!-- <li class="header">HEADER</li> -->
             <!-- Optionally, you can add icons to the links -->
             <li th:class="${CURRENT_MENU == 'Home'}? 'active' : ''" ><a href="#" th:href="@{'/home'}"><i class="fa fa-home"></i> <span>Home</span></a></li>
-            <li th:class="${CURRENT_MENU == 'Categories'}? 'active' : ''"  sec:authorize="hasRole('ROLE_MANAGE_CATEGORIES')"><a href="/categories" th:href="@{'/categories'}"><i class="fa fa-folder-open"></i> <span>Categories</span></a></li>
-            <li th:class="${CURRENT_MENU == 'Products'}? 'active' : ''"  sec:authorize="hasRole('ROLE_MANAGE_PRODUCTS')"><a href="#" th:href="@{'/products'}"><i class="fa fa-file"></i> <span>Products</span></a></li>
+            <li th:class="${CURRENT_MENU == 'Categories'}? 'active' : ''"  sec:authorize="hasRole('ROLE_MANAGE_CATEGORIES')"><a href="/categories" th:href="@{/categories/categories}"><i class="fa fa-folder-open"></i> <span>Categories</span></a></li>
+            <li th:class="${CURRENT_MENU == 'Products'}? 'active' : ''"  sec:authorize="hasRole('ROLE_MANAGE_PRODUCTS')"><a href="#" th:href="@{/products}"><i class="fa fa-file"></i> <span>Products</span></a></li>
             <li th:class="${CURRENT_MENU == 'Orders'}? 'active' : ''"  sec:authorize="hasRole('ROLE_MANAGE_ORDERS')"><a href="#" th:href="@{'/orders'}"><i class="fa fa-cart-arrow-down"></i> <span>Orders</span></a></li>
             <li th:class="${CURRENT_MENU == 'Customers'}? 'active' : ''"  sec:authorize="hasRole('ROLE_MANAGE_CUSTOMERS')"><a href="#" th:href="@{'/customers'}"><i class="fa fa-smile-o"></i> <span>Customers</span></a></li>
             <li th:class="${CURRENT_MENU == 'Users'}? 'active' : ''"  sec:authorize="hasRole('ROLE_MANAGE_USERS')"><a href="#" th:href="@{'/users'}"><i class="fa fa-users"></i> Users</a></li>
@@ -138,15 +145,17 @@
 		        	<p><i class="icon fa fa-ban"></i> <span th:text="${error}">Error</span></p>
 		        </div>
 	        </section>
-        </div>
 
         <!-- Main content -->
         <section class="content">
           <div layout:fragment="content">
-	          <!-- Your Page Content Here -->
-		  </div>
+            <h1>Admin Page</h1>
+          </div>
 
         </section><!-- /.content -->
+        </div>
+
+
       </div><!-- /.content-wrapper -->
 
       <!-- Main Footer -->

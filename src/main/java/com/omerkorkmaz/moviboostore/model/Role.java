@@ -26,7 +26,7 @@ public class Role {
 //    @ManyToMany(mappedBy = "roles")
 //    private List<User> users;
 
-//    @ManyToMany
-//    private List<Consent> consents;
+    @ManyToMany
+    private List<Consent> consents;
 
 }
