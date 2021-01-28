@@ -79,5 +79,29 @@ public class Cart {
         }
         return amount;
     }
+    public Customer getCustomer()
+    {
+        return customer;
+    }
+    public void setCustomer(Customer customer)
+    {
+        this.customer = customer;
+    }
+    public Address getDeliveryAddress()
+    {
+        return deliveryAddress;
+    }
+    public void setDeliveryAddress(Address deliveryAddress)
+    {
+        this.deliveryAddress = deliveryAddress;
+    }
+    public Payment getPayment()
+    {
+        return payment;
+    }
+    public void setPayment(Payment payment)
+    {
+        this.payment = payment;
+    }
 
 }

@@ -53,12 +53,13 @@ public class Product {
     private Date createDate;
 
     @ManyToOne
+    @JoinColumn(name="category_id")
     private Category category;
 
     @ManyToMany(mappedBy = "product")
     private List<OrderItem> orderItems;
 
-    //@OneToMany (mappedBy = "product")
-   // private List<CartItem>  cartItems;
+//    @OneToMany (mappedBy = "product")
+//    private List<CartItem>  cartItems;
 
 }

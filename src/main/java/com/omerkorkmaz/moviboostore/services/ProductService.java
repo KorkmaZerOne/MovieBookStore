@@ -19,10 +19,6 @@ public class ProductService {
     private ProductRepository productRepository;
 
 
-    @Autowired
-    CategoryRepository categoryRepository;
-
-
     public List<Product> getAllProducts(){
         List<Product> list = new ArrayList<>();
         productRepository.findAll().forEach(e -> list.add(e));
@@ -38,10 +34,10 @@ public class ProductService {
     }
 
     public Product createProduct(Product product) {
-        Product persistedProduct = getProductBySku(product.getSku());
-        if(persistedProduct!= null){
-            throw new MovibooException("Product SKU "+product.getSku()+" already exist");
-        }
+//        Product persistedProduct = getProductBySku(product.getSku());
+//        if(persistedProduct!= null){
+//            throw new MovibooException("Product SKU "+product.getSku()+" already exist");
+//        }
         return productRepository.save(product);
     }
 
@@ -49,37 +45,7 @@ public class ProductService {
         return productRepository.search("%"+query+"%");
     }
 
-    public List<Category> getAllCategories() {
 
-        return categoryRepository.findAll();
-    }
-
-    public Category getCategoryByName(String name) {
-        return categoryRepository.getByName(name);
-    }
-
-    public Category getCategoryById(Integer id) {
-        return categoryRepository.getOne(id);
-    }
-
-    public Category createCategory(Category category) {
-        Category persistedCategory = getCategoryByName(category.getName());
-        if( persistedCategory != null){
-            throw new MovibooException("Category "+category.getName()+" already exist");
-        }
-        return categoryRepository.save(category);
-    }
-
-    public Category updateCategory(Category category) {
-        Category persistedCategory = getCategoryById(category.getCategoryId());
-        if(persistedCategory == null){
-            throw new MovibooException("Category "+category.getCategoryId()+" doesn't exist");
-        }
-        persistedCategory.setDescription(category.getDescription());
-        persistedCategory.setDisplayOrder(category.getDisplayOrder());
-        persistedCategory.setDisabled(category.isDisabled());
-        return categoryRepository.save(persistedCategory);
-    }
 
 
 }

@@ -1,8 +1,8 @@
 package com.omerkorkmaz.moviboostore.controllers;
 
-import com.omerkorkmaz.moviboostore.model.Category;
 import com.omerkorkmaz.moviboostore.model.Product;
 import com.omerkorkmaz.moviboostore.model.ProductForm;
+import com.omerkorkmaz.moviboostore.services.CategoryService;
 import com.omerkorkmaz.moviboostore.services.ProductService;
 import com.omerkorkmaz.moviboostore.validators.ProductFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,24 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class AdminProductController {
 
-//    private static final String viewPrefix = "products/";
-
     @Autowired
     private ProductService productService;
 
-    private ProductFormValidator productFormValidator;
+    private CategoryService categoryService;
 
+   // private ProductFormValidator productFormValidator;
 
-    @ModelAttribute("categoriesList")
-    public List<Category> categoriesList()
-    {
-        return productService.getAllCategories();
-    }
 
     @RequestMapping(value="/products", method= RequestMethod.GET)
     public String listProducts(Model model) {
@@ -43,15 +36,15 @@ public class AdminProductController {
     @RequestMapping(value="/products/new", method=RequestMethod.GET)
     public String createProductForm(Model model) {
         ProductForm product = new ProductForm();
-        model.addAttribute("product",product);
-        model.addAttribute("categoriesList",productService.getAllCategories());
+        model.addAttribute("product", product);
+      //  model.addAttribute("categoriesList",categoryService.getAllCategories());
         return "products/create_product";
     }
 
     @RequestMapping(value="/products", method=RequestMethod.POST)
     public String createProduct(@Valid @ModelAttribute("product") ProductForm productForm, BindingResult result,
                                 Model model, RedirectAttributes redirectAttributes) {
-       // productFormValidator.validate(productForm, result);
+      // productFormValidator.validate(productForm, result);
         if(result.hasErrors()){
             return "products/create_product";
         }
@@ -66,7 +59,7 @@ public class AdminProductController {
     public String editProductForm(@PathVariable Integer id, Model model) {
         Product product = productService.getProductById(id);
         model.addAttribute("product",ProductForm.fromProduct(product));
-        model.addAttribute("categoriesList",productService.getAllCategories());
+        model.addAttribute("categoriesList",categoryService.getAllCategories());
         return "products/edit_product";
     }
 }

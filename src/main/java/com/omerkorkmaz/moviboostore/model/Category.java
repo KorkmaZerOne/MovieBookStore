@@ -24,7 +24,7 @@ public class Category {
     private boolean disabled;
 
     @Column(name="Display_Order")
-    private Integer displayOrder;
+    private int displayOrder;
 
     @OneToMany(mappedBy = "category")
     private Set<Product> products;
